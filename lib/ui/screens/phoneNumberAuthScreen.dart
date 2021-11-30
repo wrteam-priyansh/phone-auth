@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:phone_auth/ui/screens/homeScreen.dart';
 import 'package:wakelock/wakelock.dart';
 
 class PhoneNumberAuthScreen extends StatefulWidget {
@@ -146,7 +147,7 @@ class _PhoneNumberAuthScreenState extends State<PhoneNumberAuthScreen> with Widg
                   ? CircularProgressIndicator()
                   : CupertinoButton(
                       child: Text("Submit"),
-                      onPressed: () {
+                      onPressed: () async {
                         setState(() {
                           isLoading = true;
                         });
@@ -160,6 +161,7 @@ class _PhoneNumberAuthScreenState extends State<PhoneNumberAuthScreen> with Widg
                             setState(() {
                               isLoading = false;
                             });
+                            Navigator.of(context).pushReplacement(CupertinoPageRoute(builder: (_) => HomeScreen()));
                           }).catchError((e) {
                             print((e as FirebaseAuthException).code);
                             print(e.toString());

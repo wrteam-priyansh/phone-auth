@@ -5,6 +5,7 @@ import 'package:phone_auth/ui/screens/phoneNumberAuthScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
